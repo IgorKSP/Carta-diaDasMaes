@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta</title>
+  <title>Carta de Dia das Mães</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
-    <div class="container-letter">
-      <div class="cover"></div>
-      <span class="heart">♥</span>
+    <section class="container-letter" aria-label="Carta para o Dia das Mães">
+      <div class="cover" aria-hidden="true"></div>
+      <span class="heart" aria-hidden="true">♥</span>
       <p class="paper" id="mainMessage">
-        Este dia especial de amor e carinho, celebramos o dia da pessoa mais importante da minha vida, minha querida mãe que eu amo tanto.
-        Feliz dia das Mães.
+        Neste dia especial de amor e carinho, celebramos a pessoa mais importante da minha vida: minha querida mãe, que eu amo tanto.
+        <strong>Feliz Dia das Mães!</strong>
       </p>
-      <div class="letter"></div>
-    </div>
-    <div class="options">
-      <button id="open">Abrir</button>
-      <button id="close">Cerrar</butto>
-    </div>
+      <div class="letter" aria-hidden="true"></div>
+    </section>
+
+    <nav class="options" aria-label="Controles da carta">
+      <button id="open" type="button">Abrir</button>
+      <button id="close" type="button">Fechar</button>
+    </nav>
   </main>
   <script src="script.js"></script>
 </body>
