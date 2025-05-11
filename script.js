@@ -1,58 +1,53 @@
-const urlSearchParams = new URLSearchParams(window.location.search)
-
-const messageCustom = urlSearchParams.get('message')
+// Lê o parâmetro 'message' da URL e atualiza o conteúdo, se existir
+const urlSearchParams = new URLSearchParams(window.location.search);
+const messageCustom = urlSearchParams.get('message');
 
 if (messageCustom) {
-
-  const mainMessageElement = document.querySelector('#mainMessage')
-  mainMessageElement.textContent = decodeURI(messageCustom)
+  const mainMessageElement = document.querySelector('#mainMessage');
+  mainMessageElement.textContent = decodeURIComponent(messageCustom); // decodeURI -> decodeURIComponent é mais seguro
 }
 
-// the tutorial starts here
+// Seleciona os botões
+const btnOpenElement = document.querySelector('#open');
+const btnCloseElement = document.querySelector('#close');
 
-const btnOpenElement = document.querySelector('#open')
-const btnCloseElement = document.querySelector('#close')
+// Desativa o botão de fechar inicialmente
+btnCloseElement.disabled = true;
 
-btnCloseElement.disabled = true
+// Elementos principais
+const coverElement = document.querySelector('.cover');
+const paperElement = document.querySelector('.paper');
+const heartElement = document.querySelector('.heart');
 
+// Abre a carta
+btnOpenElement.addEventListener('click', () => {
+  btnOpenElement.disabled = true;
+  btnCloseElement.disabled = false;
 
+  coverElement.classList.add('open-cover');
 
-btnOpenElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = true
-  btnCloseElement.disabled = false
-  const coverElement = document.querySelector('.cover')
-  coverElement.classList.add('open-cover')
+  setTimeout(() => {
+    coverElement.style.zIndex = -1;
 
-  setTimeout(()=>{
-    //
-    coverElement.style.zIndex = -1
-    
-    const paperElement = document.querySelector('.paper')
-    paperElement.classList.remove('close-paper')
-    paperElement.classList.add('open-paper')
+    paperElement.classList.remove('close-paper');
+    paperElement.classList.add('open-paper');
 
-    // animacion del corazón
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'block'
-  
-  }, 500)
+    heartElement.style.display = 'block';
+  }, 500);
+});
 
-})
-btnCloseElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = false
-  btnCloseElement.disabled = true
+// Fecha a carta
+btnCloseElement.addEventListener('click', () => {
+  btnOpenElement.disabled = false;
+  btnCloseElement.disabled = true;
 
-  const coverElement = document.querySelector('.cover')
-  const paperElement = document.querySelector('.paper')
-  paperElement.classList.remove('open-paper')
-  paperElement.classList.add('close-paper')
-  
-  setTimeout(()=>{
-    coverElement.style.zIndex = 0
-    coverElement.classList.remove('open-cover')
+  paperElement.classList.remove('open-paper');
+  paperElement.classList.add('close-paper');
 
-    // animacion del corazón
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'none'
-  },500)
-})
+  setTimeout(() => {
+    coverElement.style.zIndex = 0;
+    coverElement.classList.remove('open-cover');
+
+    heartElement.style.display = 'none';
+  }, 500);
+});
